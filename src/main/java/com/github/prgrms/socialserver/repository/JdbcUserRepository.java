@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.github.prgrms.socialserver.util.TimeConverter.toLocalDateTime;
+import static com.github.prgrms.socialserver.util.LocalDateTimeUtil.toLocalDateTime;
 
 @Repository
 public class JdbcUserRepository implements UserRepository {

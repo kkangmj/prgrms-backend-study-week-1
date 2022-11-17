@@ -1,7 +1,9 @@
 package com.github.prgrms.socialserver.domain;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
+import static com.github.prgrms.socialserver.util.LocalDateTimeUtil.simplify;
 import static com.google.common.base.Preconditions.checkArgument;
 
 public class User {
@@ -42,5 +44,30 @@ public class User {
 
     public LocalDateTime getLastLoginAt() {
         return lastLoginAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof User)) {
+            return false;
+        }
+
+        User user = (User) o;
+        return seq == user.seq;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(seq);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{seq: %s, email: %s, loginCount: %s, lastLoginAt: %s, createAt: %s}",
+            seq, email, loginCount, simplify(lastLoginAt), simplify(createAt));
     }
 }
